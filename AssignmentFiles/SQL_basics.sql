@@ -26,7 +26,11 @@ SELECT name, city, state FROM stores;
 
 -- Q7) From orders, show order_id, status, and a computed column total_items
 --     that counts how many items are in each order.
-SELECT orders.order_id, orders.status, sum(order_items.quantity) AS total_items FROM orders INNER JOIN order_items ON orders.order_id = order_items.order_id GROUP BY orders.order_id;
+SELECT o.order_id, o.status, sum(oi.quantity) AS total_items 
+FROM orders o
+JOIN order_items oi
+	ON o.order_id = oi.order_id 
+GROUP BY o.order_id;
 
 -- Q8) Show orders placed on '2025-09-04' (any time that day).
 SELECT * FROM orders WHERE order_datetime LIKE '%2025-09-04%';
